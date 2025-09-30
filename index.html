@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <title>Trading Tracker</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>📈 Trading Tracker</h1>
+    <div>
+      <button id="toggleDark">Karanlık Mod</button>
+      <button id="contactBtn">İletişim</button>
+    </div>
+  </header>
+
+  <!-- İletişim Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>İletişim</h2>
+      <p>Email: <a href="ugur0269@gmail.com">ugur0269@gmail.com</a></p>
+      <p>Telegram: <a href="https://t.me/seyyarcigercitibi" target="_blank">@seyyarcigercitibi</a></p>
+      <p>Twitter: <a href="https://twitter.com/papikcisair" target="_blank">@papikcisair</a></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hakkımda -->
+    <div class="card">
+      <h2>Hakkımda</h2>
+      <p>Ben Uğur Kızıl, trading ve yatırım meraklısıyım. Bu platformu kazanç ve kayıplarımı takip etmek, stratejilerimi analiz etmek ve TradingView üzerinden grafiklerimi kaydetmek için tasarladım. Hedefim disiplinli ve bilinçli bir trader olmak.</p>
+    </div>
+
+    <!-- Form -->
+    <div class="card">
+      <h2>Yeni İşlem Ekle</h2>
+      <form id="tradeForm">
+        <select id="category">
+          <option value="">Kategori Seç (Opsiyonel)</option>
+          <option value="forex">Forex</option>
+          <option value="crypto">Kripto</option>
+        </select>
+        <input type="date" id="date" placeholder="Tarih (Opsiyonel)">
+        <input type="text" id="trade" placeholder="İşlem Adı (Opsiyonel)">
+        <select id="direction">
+          <option value="long">Long</option>
+          <option value="short">Short</option>
+        </select>
+        <input type="number" id="entry" placeholder="Giriş Fiyatı ($)" step="any" required>
+        <input type="number" id="stop" placeholder="Stop Loss ($)" step="any" required>
+        <input type="number" id="target" placeholder="Hedef Fiyat ($)" step="any" required>
+        <input type="number" id="exit" placeholder="Çıkış Fiyatı ($, opsiyonel)" step="any">
+        <input type="number" id="balance" placeholder="Bakiye ($)" step="any">
+        <input type="number" id="leverage" placeholder="Kaldıraç" step="any" value="1">
+        <input type="number" id="amount" placeholder="Miktar / Lot" step="any" readonly>
+        <p class="lot-info">💡 Bakiye ve kaldıraç ile hesaplanan miktar bu pozisyonu açmak için yeterlidir. 1 lot ≠ 1 birim bakiye.</p>
+        <input type="text" id="desc" placeholder="Açıklama (Opsiyonel)">
+        <input type="text" id="link" placeholder="TradingView Linki (Opsiyonel)">
+        <button type="submit">Kaydet</button>
+      </form>
+    </div>
+
+    <!-- Forex Tablosu -->
+    <div class="card">
+      <h2>Forex İşlemleri</h2>
+      <button class="export" data-category="forex">Excel/CSV Dışa Aktar</button>
+      <table id="forexTable">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>İşlem</th>
+            <th>Yön</th>
+            <th>Giriş Fiyatı ($)</th>
+            <th>Stop Loss ($)</th>
+            <th>Hedef Fiyat ($)</th>
+            <th>Miktar / Lot</th>
+            <th>Kaldıraç</th>
+            <th>Kar / Zarar ($)</th>
+            <th>Mesaj</th>
+            <th>Açıklama</th>
+            <th>Grafik</th>
+            <th>Sil</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <!-- Kripto Tablosu -->
+    <div class="card">
+      <h2>Kripto İşlemleri</h2>
+      <button class="export" data-category="crypto">Excel/CSV Dışa Aktar</button>
+      <table id="cryptoTable">
+        <thead>
+          <tr>
+            <th>Tarih</th>
+            <th>İşlem</th>
+            <th>Yön</th>
+            <th>Giriş Fiyatı ($)</th>
+            <th>Stop Loss ($)</th>
+            <th>Hedef Fiyat ($)</th>
+            <th>Miktar / Lot</th>
+            <th>Kaldıraç</th>
+            <th>Kar / Zarar ($)</th>
+            <th>Mesaj</th>
+            <th>Açıklama</th>
+            <th>Grafik</th>
+            <th>Sil</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
